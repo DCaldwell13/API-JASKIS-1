@@ -35,3 +35,79 @@
 // 3. Delete all bounties sent by Songbird
 
 // 4. Update all captured statuses to true
+db.Bounties.insertOne({
+    name: "Thanoceros",
+    species: "Rhinoceros",
+    location: "Grasslands",
+    wantedFor: "Eating too much grass",
+    client: "Songbird",
+    reward: 10000,
+    captured: false
+  });
+db.Bounties.insertMany([
+    {
+      "name": "Lokinkajou",
+      "species": "Kinkajou",
+      "location": "Tropical rainforest",
+      "wantedFor": "Partying too late at night",
+      "client": "White tiger",
+      "reward": 1000,
+      "captured": false
+    },
+    {
+      "name": "Nebullama",
+      "species": "Llama",
+      "location": "Grasslands",
+      "wantedFor": "Drinking all the water from the ocean",
+      "client": "Songbird",
+      "reward": 2500,
+      "captured": false
+    },
+    {
+      "name": "Polarwind",
+      "species": "Polar Bear",
+      "location": "Arctic",
+      "wantedFor": "Not hibernating",
+      "client": "Sabertooth",
+      "reward": 4000,
+      "captured": false
+    },
+    {
+      "name": "Wrecking Crows",
+      "species": "Crow",
+      "location": "Grasslands",
+      "wantedFor": "Cawing too loudly",
+      "client": "Red wolf",
+      "reward": 40000,
+      "captured": false
+    },
+    {
+      "name": "Grandhog",
+      "species": "Groundhog",
+      "location": "Woodlands",
+      "wantedFor": "Not coming out of the hole on time and prolonging winter",
+      "client": "Songbird",
+      "reward": 50000,
+      "captured": false
+    },
+    {
+      "name": "Grim Panda",
+      "species": "Giant Panda",
+      "location": "Temperate forest",
+      "wantedFor": "Eating all the bamboo",
+      "client": "Red wolf",
+      "reward": 5000,
+      "captured": false
+    }
+  ]);
+db.Bounties.find({location: "Grasslands"});
+db.Bounties.find({reward:{$gte: 10000}});
+db.Bounties.find({location: "Grasslands", reward:{$gte: 10000}});
+db.Bounties.deleteOne({client: "Red wolf"});
+db.Bounties.find({$and:[{species: "Groundhog"}, {location: "Woodlands"}]});
+db.Bounties.updateOne(
+    {reward: 4000},
+    {$set: {reward: 10000}}
+    );
+db.Bounties.deleteOne({_id: ObjectId("64509ea110399726cc5c6dd6")});
+db.Bounties.deleteMany({_id: ObjectId("6450aa7710399726cc5c6ddc")},{_id: ObjectId("64509ea110399726cc5c6dda")},{_id: ObjectId("64509ea110399726cc5c6dd7")},{_id: ObjectId("64509e4c10399726cc5c6dd5")})
